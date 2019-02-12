@@ -7,7 +7,7 @@ import (
 	"regexp"
 	// "strconv"
 	// "time"
-	"github/com/gorilla/mux"
+	"github.com/gorilla/mux"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -21,21 +21,21 @@ func APIIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func TimestampIndex(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Another index..."))
+	w.Write([]byte("Another index...\n"))
 	w.WriteHeader(http.StatusOK)
 }
 
 func TimestampShow(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	ds := vars["datestring"]
-	ms := uint64(0)
+	// ms := uint64(0)
 
 	re := regexp.MustCompile("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}")
 	if re.MatchString(ds) != true {
 		// if s, err := strconv.ParseUint(ds, 10, 64); err == nil {
 		// 	ms = s
 		// }
-		ms = s
+		// ms = s
 	}
 
 	date := Datestring{Date: ds, Unix: 5, UTC: "UTC"}

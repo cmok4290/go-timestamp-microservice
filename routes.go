@@ -24,18 +24,18 @@ var routes = Routes {
 		"APIIndex",
 		"GET",
 		"/api",
-		APIIndex
+		APIIndex,
 	},
 	Route {
 		"TimestampIndex",
 		"GET",
-		"/timestamp",
-		TimestampIndex
+		"/api/timestamp",
+		TimestampIndex,
 	},
 	Route {
 		"TimestampShow",
 		"GET",
-		"/timestamp/{datestring}",
-		TimestampShow
+		"/api/timestamp/{datestring}",
+		TimestampShow,
 	},
 }
