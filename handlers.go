@@ -2,23 +2,11 @@ package main
 
 import (
 	"encoding/json"
-	// "fmt"
-	"log"
+	"fmt"
 	"net/http"
-	"regexp"
-	"strconv"
-	// "time"
-	"github.com/gorilla/mux"
 
+	"github/com/gorilla/mux"
 )
-
-type Datestring struct {
-	Date string `json:"date"`
-	Unix int `json:"unix"`
-	UTC string `json:"utc"`
-}
-
-// type Dates []Datestring
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Server is running...\n"))
@@ -57,17 +45,4 @@ func TimestampShow(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// fmt.Fprintln(w, "Timestamp shows:", ds)
-}
-
-func main() {
-	router := mux.NewRouter()
-
-	router.HandleFunc("/", Index).Methods("GET")
-	router.HandleFunc("/api", APIIndex).Methods("GET")
-	router.HandleFunc("/api/", APIIndex).Methods("GET")
-	router.HandleFunc("/api/timestamp", TimestampIndex).Methods("GET")
-	router.HandleFunc("/api/timestamp/", TimestampShow).Methods("GET")
-	router.HandleFunc("/api/timestamp/{datestring}", TimestampShow).Methods("GET")
-	
-	log.Fatal(http.ListenAndServe("localhost:8000", router))
 }
