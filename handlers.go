@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"regexp"
 	// "strconv"
-	// "time"
 	"github.com/gorilla/mux"
+	"time"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -21,8 +21,16 @@ func APIIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func TimestampIndex(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Another index...\n"))
+	t := time.Now()
+	date := Datestring{
+		Unix: t.Unix(), UTC: "UTC",
+	}
+
+	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(date); err != nil {
+		panic(err)
+	}
 }
 
 func TimestampShow(w http.ResponseWriter, r *http.Request) {
@@ -38,7 +46,7 @@ func TimestampShow(w http.ResponseWriter, r *http.Request) {
 		// ms = s
 	}
 
-	date := Datestring{Date: ds, Unix: 5, UTC: "UTC", Natural: "February 25, 2017"}
+	date := Datestring{Unix: 5, UTC: "UTC"}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
