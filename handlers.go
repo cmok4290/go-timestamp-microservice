@@ -38,7 +38,7 @@ func TimestampShow(w http.ResponseWriter, r *http.Request) {
 		// ms = s
 	}
 
-	date := Datestring{Date: ds, Unix: 5, UTC: "UTC"}
+	date := Datestring{Date: ds, Unix: 5, UTC: "UTC", Natural: "February 25, 2017"}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
