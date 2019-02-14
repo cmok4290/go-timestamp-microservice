@@ -23,7 +23,7 @@ func APIIndex(w http.ResponseWriter, r *http.Request) {
 func TimestampIndex(w http.ResponseWriter, r *http.Request) {
 	t := time.Now()
 	date := Datestring{
-		Unix: t.Unix(), UTC: "UTC",
+		Unix: t.Unix(), UTC: t.UTC().String(),
 	}
 
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
